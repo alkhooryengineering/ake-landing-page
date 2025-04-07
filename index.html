@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Gate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Access Restricted</h1>
+        <p>Enter the password to proceed:</p>
+        <input type="password" id="passwordInput" placeholder="Password" />
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <script>
+        const correctPassword = 'ake@00041'; // Set your actual password here
+        const redirectUrl = 'https://mailxto.com/f/nhpi8t54j4'; // Replace with the URL you want to redirect to
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === correctPassword) {
+                window.location.href = redirectUrl;
+            } else {
+                document.getElementById('error').textContent = 'Incorrect password, please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
