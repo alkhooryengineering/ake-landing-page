@@ -54,16 +54,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Access Restricted</h1>
-        <p>Enter the password to proceed:</p>
+        <h1>AKE Identity</h1>
+        <p>Enter the password:</p>
         <input type="password" id="passwordInput" placeholder="Password" />
-        <button onclick="checkPassword()">Submit</button>
+        <button onclick="checkPassword()">Proceed</button>
         <p id="error" class="error"></p>
     </div>
 
     <script>
-        const correctPassword = 'ake@00041'; // Set your actual password here
-        const redirectUrl = 'https://mailxto.com/f/nhpi8t54j4'; // Replace with the URL you want to redirect to
+        const correctPassword = 'ake00041';
+        const redirectUrl = 'https://mailxto.com/f/nhpi8t54j4';
 
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
