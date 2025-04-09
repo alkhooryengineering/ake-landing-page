@@ -89,9 +89,17 @@
     </div>
 
     <script>
-        // Disable right-click and text selection
+        // Disable right-click, text selection, and text copying
         document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('selectstart', (e) => e.preventDefault());
+        document.addEventListener('copy', (e) => e.preventDefault());
+
+        // Disable F12 and other developer tools shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || (e.ctrlKey && (e.key === 'U' || e.key === 'S'))) {
+                e.preventDefault();
+            }
+        });
 
         const correctPassword = 'ake00041';
         const redirectUrl = 'https://mailxto.com/f/nhpi8t54j4';
