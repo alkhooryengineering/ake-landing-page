@@ -89,6 +89,10 @@
     </div>
 
     <script>
+        // Disable right-click and text selection
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('selectstart', (e) => e.preventDefault());
+
         const correctPassword = 'ake00041';
         const redirectUrl = 'https://mailxto.com/f/nhpi8t54j4';
 
