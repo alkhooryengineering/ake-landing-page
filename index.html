@@ -1,228 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Gate</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-image: url('https://github.com/alkhooryengineering/ake-landing-page/blob/main/AKE%20Street%20View.png?raw=true');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Gate</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://github.com/alkhooryengineering/ake-landing-page/blob/main/AKE%20Street%20View.png?raw=true');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      overflow: hidden;
+    }
 
-        .container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
+    .welcome-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      animation: fadeInOut 4s ease forwards;
+    }
 
-        input[type="password"] {
-            padding: 10px;
-            font-size: 16px;
-            width: 80%;
-            margin-bottom: 10px;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-        }
+    .welcome-text {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      animation: glow 2s infinite alternate;
+    }
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      }
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
 
-        .error {
-            color: red;
-            margin-top: 10px;
-        }
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      margin-bottom: 10px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
 
-        .locked {
-            color: red;
-            font-size: 18px;
-            margin-top: 10px;
-        }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-        /* Prize Blast Message Styling */
-        #welcomeMessage {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #ff9900;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
-            animation: prizeBlast 3s ease-out forwards;
-        }
+    button:hover {
+      background-color: #45a049;
+    }
 
-        /* Prize Blast Animation */
-        @keyframes prizeBlast {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
-            }
-            25% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.8;
-                box-shadow: 0 0 50px rgba(255, 255, 0, 0.8);
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.6;
-                box-shadow: 0 0 100px rgba(255, 255, 0, 0.8);
-            }
-            75% {
-                transform: translate(-50%, -50%) scale(1.8);
-                opacity: 0.4;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0;
-                box-shadow: none;
-            }
-        }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
 
-        /* Confetti effect styles */
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #ffcc00;
-            opacity: 0;
-            animation: confettiFall 3s infinite;
-        }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
 
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(500px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-    </style>
+    .locked {
+      color: red;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <!-- Welcome message, initially hidden -->
-    <div id="welcomeMessage">Welcome to the AKE World!</div>
 
-    <div class="container">
-        <h1>AKE Identity</h1>
-        <p>Enter the password:</p>
-        <input type="password" id="passwordInput" placeholder="Password" />
-        <button id="submitBtn" onclick="checkPassword()">Proceed</button>
-        <p id="error" class="error"></p>
-        <p id="lockedMessage" class="locked" style="display: none;">User blocked. Contact A.Rehman.</p>
-    </div>
+  <!-- Elegant Welcome Message Overlay -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-text">Welcome to the AKE World</div>
+  </div>
 
-    <script>
-        const correctPassword = 'ake00041';
-        const redirectUrl = 'https://form.jotform.com/250991843382061';
+  <div class="container">
+    <h1>AKE Identity</h1>
+    <p>Enter the password:</p>
+    <input type="password" id="passwordInput" placeholder="Password" />
+    <button id="submitBtn" onclick="checkPassword()">Proceed</button>
+    <p id="error" class="error"></p>
+    <p id="lockedMessage" class="locked" style="display: none;">User blocked. Contact A.Rehman.</p>
+  </div>
 
-        let attemptCount = 0;
-        let lockoutTime = null;
+  <script>
+    const correctPassword = 'ake00041';
+    const redirectUrl = 'https://form.jotform.com/250991843382061';
+    let attemptCount = 0;
+    let lockoutTime = null;
 
-        // Show welcome message and confetti when the page loads
-        window.onload = function() {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            welcomeMessage.style.display = 'block';
+    // Fade out welcome overlay after animation
+    window.onload = function () {
+      const overlay = document.getElementById('welcomeOverlay');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 4000); // remove after animation ends
+    };
 
-            // Confetti animation
-            createConfetti();
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const submitBtn = document.getElementById('submitBtn');
+      const lockedMessage = document.getElementById('lockedMessage');
 
-            // Hide the welcome message after 3 seconds
-            setTimeout(function() {
-                welcomeMessage.style.display = 'none';
-            }, 3000);
-        };
-
-        // Function to create confetti
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) {
-                let confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * window.innerWidth + 'px';
-                confetti.style.animationDelay = Math.random() * 2 + 's'; // Random delay for each confetti
-                document.body.appendChild(confetti);
-
-                // Remove the confetti after animation ends
-                setTimeout(() => {
-                    confetti.remove();
-                }, 3000);
-            }
+      if (lockoutTime) {
+        const timeLeft = lockoutTime - Date.now();
+        if (timeLeft > 0) {
+          lockedMessage.style.display = 'block';
+          return;
+        } else {
+          lockoutTime = null;
+          lockedMessage.style.display = 'none';
+          attemptCount = 0;
         }
+      }
 
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            const submitBtn = document.getElementById('submitBtn');
-            const lockedMessage = document.getElementById('lockedMessage');
-
-            if (lockoutTime) {
-                // Check if the lockout period has ended
-                const timeLeft = lockoutTime - Date.now();
-                if (timeLeft > 0) {
-                    // Still locked, show the message
-                    lockedMessage.style.display = 'block';
-                    return;
-                } else {
-                    // Lockout has ended, reset
-                    lockoutTime = null;
-                    lockedMessage.style.display = 'none';
-                    attemptCount = 0;
-                }
-            }
-
-            if (password === correctPassword) {
-                window.location.href = redirectUrl;
-            } else {
-                attemptCount++;
-                if (attemptCount >= 4) {
-                    // Lock the user for 5 minutes
-                    lockoutTime = Date.now() + 5 * 60 * 1000; // 5 minutes from now
-                    lockedMessage.style.display = 'block';
-                    submitBtn.disabled = true;
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        lockedMessage.style.display = 'none';
-                    }, 5 * 60 * 1000); // Re-enable button after 5 minutes
-                } else {
-                    document.getElementById('error').textContent = 'Incorrect password';
-                }
-            }
+      if (password === correctPassword) {
+        window.location.href = redirectUrl;
+      } else {
+        attemptCount++;
+        if (attemptCount >= 4) {
+          lockoutTime = Date.now() + 5 * 60 * 1000;
+          lockedMessage.style.display = 'block';
+          submitBtn.disabled = true;
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            lockedMessage.style.display = 'none';
+          }, 5 * 60 * 1000);
+        } else {
+          document.getElementById('error').textContent = 'Incorrect password';
         }
-    </script>
+      }
+    }
+  </script>
 </body>
 </html>
