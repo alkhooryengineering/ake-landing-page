@@ -6,7 +6,7 @@
   <title>Password Gate</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -15,67 +15,37 @@
       background-size: cover;
       background-position: center;
       margin: 0;
-      overflow: hidden;
     }
 
-    .welcome-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      opacity: 0;
-      animation: fadeInOut 4s ease forwards;
-    }
-
-    .welcome-text {
-      font-size: 48px;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-      }
-      to {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-      }
-    }
-
-    @keyframes fadeInOut {
+    /* 🔥 Bounce Animation */
+    @keyframes bounceIn {
       0% {
+        transform: scale(0.5);
         opacity: 0;
       }
-      10% {
+      60% {
+        transform: scale(1.2);
         opacity: 1;
       }
-      90% {
-        opacity: 1;
+      80% {
+        transform: scale(0.95);
       }
       100% {
-        opacity: 0;
-        visibility: hidden;
+        transform: scale(1);
       }
     }
 
     .container {
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 100%;
-      position: relative;
-      z-index: 1;
+
+      /* ✨ Bounce In Effect */
+      animation: bounceIn 1s ease;
     }
 
     input[type="password"] {
@@ -119,12 +89,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Elegant Welcome Message Overlay -->
-  <div class="welcome-overlay" id="welcomeOverlay">
-    <div class="welcome-text">Welcome to the AKE World</div>
-  </div>
-
   <div class="container">
     <h1>AKE Identity</h1>
     <p>Enter the password:</p>
@@ -137,16 +101,9 @@
   <script>
     const correctPassword = 'ake00041';
     const redirectUrl = 'https://form.jotform.com/250991843382061';
+
     let attemptCount = 0;
     let lockoutTime = null;
-
-    // Fade out welcome overlay after animation
-    window.onload = function () {
-      const overlay = document.getElementById('welcomeOverlay');
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 4000); // remove after animation ends
-    };
 
     function checkPassword() {
       const password = document.getElementById('passwordInput').value;
