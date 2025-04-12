@@ -98,25 +98,33 @@
       100% { transform: translateY(0) rotate(0deg); }
     }
 
-    /* Gear button style */
+    /* Gear GO button */
     .gear-button {
+      position: relative;
       background: none;
       border: none;
       cursor: pointer;
       padding: 0;
-      transition: transform 0.3s ease;
+      width: 60px;
+      height: 60px;
       margin-top: 10px;
     }
 
     .gear-button img {
-      width: 50px;
-      height: 50px;
-      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
-      transition: transform 0.3s ease;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    .gear-button:hover img {
-      transform: rotate(90deg) scale(1.1);
+    .gear-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: black;
+      font-weight: bold;
+      font-size: 14px;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -134,9 +142,10 @@
     <p>Enter the password:</p>
     <input type="password" id="passwordInput" placeholder="Password" />
 
-    <!-- Gear Icon as Button -->
+    <!-- Gear Icon as "GO" Button -->
     <button id="submitBtn" onclick="checkPassword()" class="gear-button" title="Proceed">
-      <img src="https://img.icons8.com/ios-filled/50/000000/gear.png" alt="Proceed" />
+      <img src="https://img.icons8.com/ios-filled/60/000000/gear.png" alt="Gear Button" />
+      <span class="gear-text">GO</span>
     </button>
 
     <p id="error" class="error"></p>
