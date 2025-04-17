@@ -98,34 +98,21 @@
       100% { transform: translateY(0) rotate(0deg); }
     }
 
-    /* Gear GO button */
-    .gear-button {
-      position: relative;
-      background: none;
+    /* ✅ New navy blue submit button style */
+    .submit-button {
+      background-color: navy;
+      color: white;
       border: none;
+      padding: 10px 25px;
+      font-size: 16px;
+      border-radius: 5px;
       cursor: pointer;
-      padding: 0;
-      width: 60px;
-      height: 60px;
+      transition: background-color 0.3s;
       margin-top: 10px;
     }
 
-    .gear-button img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .gear-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-weight: bold;
-      font-size: 16px;
-      pointer-events: none;
-      text-shadow: 1px 1px 2px black;
+    .submit-button:hover {
+      background-color: #000066;
     }
   </style>
 </head>
@@ -143,11 +130,8 @@
     <p>Enter the password:</p>
     <input type="password" id="passwordInput" placeholder="Password" />
 
-    <!-- Gear Icon with Embedded "GO" -->
-    <button id="submitBtn" onclick="checkPassword()" class="gear-button" title="Proceed">
-      <img src="https://img.icons8.com/ios-filled/60/000000/gear.png" alt="Gear Button" />
-      <span class="gear-text">GO</span>
-    </button>
+    <!-- ✅ Simple navy blue submit button -->
+    <button id="submitBtn" onclick="checkPassword()" class="submit-button">Submit</button>
 
     <p id="error" class="error"></p>
     <p id="lockedMessage" class="locked" style="display: none;">User blocked. Contact A.Rehman.</p>
